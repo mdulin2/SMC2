@@ -5,21 +5,6 @@
 /*
 Compile: 
 - gcc high_score.c
-
-Use after free bug here. 
-- The player is freed, but still has a pointer going to it. 
-- This space can be picked up by the p_array heap allocation, which will then set the memory within this area. 
-    - In the tests ran, it tends to be 103. 
-- Flow:
-    - create player (create AAAA)
-    - Add one score (new)
-    - reset the player (reset)
-    - Add 20 scores (new) * 20
-    - Check the score (won)
-    - Should have corrupted the memory to something like 103 to win.
-- Run `cat answer | ./a.out` to beat the challenge
-- Should be tested on other architectures though!
-
 */
 // 16 bytes
 struct player {
