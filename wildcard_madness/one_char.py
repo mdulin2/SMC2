@@ -1,6 +1,7 @@
 '''
 This challenge is meant to abuse wildcard characters(literal:"*[]?") 
 A solution is `python one_char.py "/???/c?? ./????.???"`
+But, there are many, many ways to solve this challenge.
 
 Only a single alphabetic character can be used character is allowed in this use case. 
 '''
