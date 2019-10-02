@@ -6,7 +6,6 @@
 #include <string.h> 
 #include <sys/socket.h> 
 #define MAX 80 
-#define PORT 8080 
 #define SA struct sockaddr 
 
 
@@ -27,7 +26,7 @@ void send_data(int sockfd, char *password)
 } 
   
 //\\\//\\\ Ignore this! //\\//\\//
-int setup_sock(){
+int setup_sock(char* IP, int PORT){
     int sockfd, connfd; 
     struct sockaddr_in servaddr, cli; 
   
@@ -43,7 +42,7 @@ int setup_sock(){
   
     // assign IP, PORT 
     servaddr.sin_family = AF_INET; 
-    servaddr.sin_addr.s_addr = inet_addr("127.0.0.1"); 
+    servaddr.sin_addr.s_addr = inet_addr(IP); 
     servaddr.sin_port = htons(PORT); 
   
     // connect the client socket to server socket 
@@ -61,10 +60,12 @@ int setup_sock(){
 //\\\//\\\ Ignore this! //\\//\\//
 int main(int argc, char* argv[] ) 
 { 
-
-	int sockfd = setup_sock();
+	// Parameter 1: IP address 
+	// Parameter 2: PORT number 
+	// Parameter 3: Passcode attempt
+	int sockfd = setup_sock(argv[1], atoi(argv[2]));
 	
-	send_data(sockfd, argv[1]); 
+	send_data(sockfd, argv[3]); 
     // close the socket 
     close(sockfd); 
 } 

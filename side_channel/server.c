@@ -8,7 +8,6 @@
 #include <sys/socket.h> 
 #include <sys/types.h> 
 #define MAX 80 
-#define PORT 8080 
 #define SA struct sockaddr 
 
 // Really ensures that the values are the same. 
@@ -62,11 +61,8 @@ void login_wrapper(int sockfd)
 	
 	// Read the password from the client 
     read(sockfd, password, sizeof(password)); 	
-	
+
 	// The flag! 
-	// Math for finding this: 
-		// Normally, this is 10 ^ 8. 
-		// Because of the side channel, we can run 10 * 8 = 80
 	char *pin = "12348219";
 	int answer = check_auth(password, pin);
 	
@@ -83,8 +79,10 @@ void login_wrapper(int sockfd)
 } 
   
 //\\\//\\\ Ignore this! //\\//\\//
-int main() 
+int main(int argc, char* argv[] ) 
 { 
+	// 1st parameter should be the port...
+	int PORT = atoi(argv[1]);
     int sockfd, connfd, len; 
     struct sockaddr_in servaddr, cli; 
   
@@ -110,7 +108,7 @@ int main()
         exit(0); 
     } 
     else
-        printf("Socket successfully binded..\n"); 
+        printf("Socket successfully binded on port %d\n",  PORT); 
   
     // Now server is ready to listen and verification 
     if ((listen(sockfd, 5)) != 0) { 
