@@ -32,6 +32,7 @@ At this point, 9 challenges are in the repository and **finished** and 2 others 
 - korean_food (session handling) 
 - xor (decrypting data using fun properties of xor)
 - Diffie Hellman (explain)
+- side_channel
 - recon_osint (3)
     - TBD 
 - forensics (4)
@@ -46,8 +47,6 @@ At this point, 9 challenges are in the repository and **finished** and 2 others 
     - App is done; get from Vanessa.  
 - log_analysis (4ish)
     - TBD 
-- side_channel 
-    - TBD
 - priv_esc 
     - TBD 
 - math(3)
