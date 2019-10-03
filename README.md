@@ -4,11 +4,11 @@ The second occurence of the Spokane Mayor's Cyber Cup! Here's to another great y
 ## Organization
 Each directory comes with a challenge file, an Info file and a solution file.   
 For instance, the easy redirect folder has four files: 
-    - flag.py: The web service that gives the flag. In most situations, this will be a text file. 
-    - redirect_fun.py: The web service trying to be exploited. 
-    - Challenge.md: The challenge/s being given to the contestant.
-    - Solution.md: The solution on how to solve the problem. This is to ensure that the **coaches** are able to help. 
-	- Info.md: How to use the application/challenge. 
+- flag.py: The web service that gives the flag. In most situations, this will be a text file. 
+- redirect_fun.py: The web service trying to be exploited. 
+- Challenge.md: The challenge/s being given to the contestant.
+- Solution.md: The solution on how to solve the problem. This is to ensure that the **coaches** are able to help. 
+- Info.md: How to use the application/challenge. 
 <br/>
 
 Some challenge directories will have *multiple* challenges in one. For instance, the Forensics and log analysis questions will have multiple challenges per directory. The Challenge.md will have these labeled as seperate challenges and the Solutions file will have multiple answers, each corresponding to the solutions. 
