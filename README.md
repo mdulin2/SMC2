@@ -33,6 +33,7 @@ At this point, 9 challenges are in the repository and **finished** and 2 others 
 - xor (decrypting data using fun properties of xor)
 - Diffie Hellman (explain)
 - side_channel
+- priv_esc 
 - recon_osint (3)
     - TBD 
 - forensics (4)
@@ -46,8 +47,6 @@ At this point, 9 challenges are in the repository and **finished** and 2 others 
 - how_not_to_use_sql 
     - App is done; get from Vanessa.  
 - log_analysis (4ish)
-    - TBD 
-- priv_esc 
     - TBD 
 - math(3)
     - TBD 
