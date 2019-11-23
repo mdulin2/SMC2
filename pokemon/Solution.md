@@ -1,0 +1,6 @@
+## Solution 
+
+- In the original pokemon series, the way in which EXP was calculated for a pokemon at level 1 introduced an **intger underflow** on the EXP. This (should have been negative number) was now gigantic and huge! Instead of going to a very low level, the unsigned value rolled over to a super large value, moving the pokemon to the max level (100). This game has recreated that flow :) 
+- There are four growth rates: fast, fast medium, slow and slow medium. All of these are fine besides the fast_medium growth rate has an inflection point below 0! 
+- The stats.csv only has one pokemon (Pikachu) in this growth rate. So, Pikachu is the obvious battler in this contest. Secondly, the EXP is affected by the bulkiness of the pokemon defeated. In order to get the negative EXP, that is needed, the weakest pokemon needs to be battled (this is according to the stats.csv file). This pokemon happens to be Shuckle. 
+- There is only one pair of pokemon (at spefific levels) that can create the underflow: Pikachu (at level 1) battles Shuckle (at level 1). The goal was to make this challenge impossible to stumble upon. Instead, a fair amount of research has to take place in order to make this work :) 

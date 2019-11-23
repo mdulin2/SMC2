@@ -22,12 +22,13 @@ Need: stat.csv also.
 #define COLUMNS 10 
 #define STRING_LENGTH 40
 
+// Definition of a move
 struct Move {
 	char name[50];
 	unsigned int power; 
 	unsigned int accuracy; 
 };
-
+// Definiton of a pokemon 
 struct Pokemon {
 	int id; 
 	char name[50]; 
@@ -67,6 +68,25 @@ Structure of csv file:
 */
 char import_matrix[ROWS][COLUMNS][STRING_LENGTH];
 int import_matrix_size; 
+
+
+// Function declarations 
+void import(); 
+void transfer(int , int, int, int); 
+unsigned fast(int);
+unsigned int fast_medium(int);
+unsigned int slow_medium(int);
+unsigned int slow(int);
+int choose_pokemon(); 
+void does_level_up(); 
+void stats_screen();
+void after_battle(); 
+int did_hit(int ); 
+int select_move(int); 
+void intro(); 
+void show_statline(int); 
+int battle(); 
+int init(); 
 
 // Imports the pokemon csv file in the import_matrix array for use in other functions. 
 void import(){
@@ -161,26 +181,6 @@ void transfer(int player, int poke_index, int level, int exp){
 
 }
 
-/*
-Note: These are inverted from the original game series to get the results that I wanted.
-For example, the original slow_medium is not the fast_medium
-*/
-unsigned fast(int level){
-	return (5/4) * pow(level,3);
-}
-
-unsigned int fast_medium(int level){
-	return (6/5)* pow(level,3) - (15 * pow(level,2)) + (100 * level) - 140;
-}
-
-unsigned int slow_medium(int level){
-	return pow(level, 3);
-}
-
-unsigned int slow(int level){
-	return (4/5) * pow(level, 3);
-}
-
 int choose_pokemon(){
 
 	import(); // Import all pokemon into the import_matrix
@@ -234,26 +234,6 @@ int choose_pokemon(){
 	
 	printf("Enemy: %d, %d, %d\n", level_select, enemy.HP,enemy.level);
 	return true; 
-}
-
-// If the pokemon is not at the right level for its exp, then level it up! 
-void does_level_up(){
-	
-	printf("EXP is at: %d\n", myself.experience);
-	int level = (int)csqrt((myself.experience/40));
-	if(level != myself.level){
-		printf("Pokemon %s leveled up to %u!\n",myself.name, (unsigned int)level);
-		myself.level = level; 
-	}
-	return;
-}
-
-void stats_screen(){
-	// Display both players HP... Maybe some ascii part even? 
-	puts("Pokemon \t Health");
-	puts("====================");
-	printf("%s \t %d\n",myself.name, myself.HP);
-	printf("%s \t %d\n\n",enemy.name, enemy.HP);
 }
 
 /*
@@ -321,43 +301,6 @@ int select_move(int player){
 	return move;
 }
 
-// Intro text
-void intro(){
-	// There goal is to get a pokemon to above level 100. Can you see how? 
-	puts("Hi, Ash Ketchup has died in a terrible bike accident where he ran into a giant Oak tree. So, it is now your job to become the best pokemon trainer that ever lived!");
-	puts("What was something that Ash or Red never did? Get a pokemon ABOVE level 100. Can you accomplish it?\n");
-}
-
-// Show the statline of a given pokemon 
-void show_statline(int index){
-	printf("Name : %s, ", import_matrix[0][index]);
-	printf("Base HP : %s, ", import_matrix[3][index]);
-	printf("Growth Rate: %s, ", import_matrix[4][index]);
-	printf("Move 1 Name: %s, ", import_matrix[5][index]);
-	printf("Move 1 Power: %s, ", import_matrix[6][index]);
-	printf("Move 1 Accuracy: %s, ", import_matrix[7][index]);
-	printf("Move 2 Name: %s, ", import_matrix[8][index]);
-	printf("Move 2 Power: %s, ", import_matrix[9][index]);
-	printf("Move 2 Accuracy: %s, ", import_matrix[10][index]);
-	printf("Move 3 Name: %s, ", import_matrix[11][index]);
-	printf("Move 3 Power: %s, ", import_matrix[12][index]);
-	printf("Move 3 Accuracy: %s, ", import_matrix[13][index]);
-	printf("Move 4 Name: %s, ", import_matrix[14][index]);
-	printf("Move 4 Power: %s, ", import_matrix[15][index]);
-	printf("Move 4 Accuracy: %s\n\n", import_matrix[16][index]);
-}
-
-/*
-Is the pokemon over level 100. IF so, you win!
-*/
-int did_win(){
-	if(myself.level > 100){
-		puts("Flag: flg{underfl0ws_are_fun!}"); 
-		return true; 
-	}
-	return false; 
-}
-
 /*
 Have enemy randomly pick a move. 
 Check if one has died? 
@@ -422,16 +365,95 @@ int battle(){
 	
 }
 
+// Intro text
+void intro(){
+	// There goal is to get a pokemon to above level 100. Can you see how? 
+	puts("Hi, Ash Ketchup has died in a terrible bike accident where he ran into a giant Oak tree. So, it is now your job to become the best pokemon trainer that ever lived!");
+	puts("What was something that Ash or Red never did? Get a pokemon ABOVE level 100. Can you accomplish it?\n");
+}
+
+void stats_screen(){
+	// Display both players HP... Maybe some ascii part even? 
+	puts("Pokemon \t Health");
+	puts("====================");
+	printf("%s \t %d\n",myself.name, myself.HP);
+	printf("%s \t %d\n\n",enemy.name, enemy.HP);
+}
+
+// Show the statline of a given pokemon 
+void show_statline(int index){
+	printf("Name : %s, ", import_matrix[0][index]);
+	printf("Base HP : %s, ", import_matrix[3][index]);
+	printf("Growth Rate: %s, ", import_matrix[4][index]);
+	printf("Move 1 Name: %s, ", import_matrix[5][index]);
+	printf("Move 1 Power: %s, ", import_matrix[6][index]);
+	printf("Move 1 Accuracy: %s, ", import_matrix[7][index]);
+	printf("Move 2 Name: %s, ", import_matrix[8][index]);
+	printf("Move 2 Power: %s, ", import_matrix[9][index]);
+	printf("Move 2 Accuracy: %s, ", import_matrix[10][index]);
+	printf("Move 3 Name: %s, ", import_matrix[11][index]);
+	printf("Move 3 Power: %s, ", import_matrix[12][index]);
+	printf("Move 3 Accuracy: %s, ", import_matrix[13][index]);
+	printf("Move 4 Name: %s, ", import_matrix[14][index]);
+	printf("Move 4 Power: %s, ", import_matrix[15][index]);
+	printf("Move 4 Accuracy: %s\n\n", import_matrix[16][index]);
+}
+
+/*
+Is the pokemon over level 100. IF so, you win!
+Need to read this from a file before the CTF starts.... // TODO - MAX
+*/
+int did_win(){
+	if(myself.level > 100){
+		puts("Flag: flg{underfl0ws_are_fun!}"); 
+		return true; 
+	}
+	return false; 
+}
+
+/*
+Note: These are inverted from the original game series.
+For example, the original slow_medium is not the fast_medium
+*/
+unsigned fast(int level){
+	return (5/4) * pow(level,3);
+}
+
+unsigned int fast_medium(int level){
+	return (6/5)* pow(level,3) - (15 * pow(level,2)) + (100 * level) - 140;
+}
+
+unsigned int slow_medium(int level){
+	return pow(level, 3);
+}
+
+unsigned int slow(int level){
+	return (4/5) * pow(level, 3);
+}
+
+// If the pokemon is not at the right level for its exp, then level it up! 
+void does_level_up(){
+	
+	printf("EXP is at: %d\n", myself.experience);
+	int level = (int)csqrt((myself.experience/40));
+	if(level != myself.level){
+		printf("Pokemon %s leveled up to %u!\n",myself.name, (unsigned int)level);
+		myself.level = level; 
+	}
+	return;
+}
+
 int init(){
 	intro();
 	choose_pokemon();
+	return 1; 
 }
 
 int main(){
 
 	init(); // Import pokemon and choose pokemon 
 	int win = battle(); // The single battle
-	if(win == 1{
+	if(win == 1){
 		after_battle(); // exp increase and level up. 
 		did_win();		// Check to see if the challenge has been solved. 
 	}

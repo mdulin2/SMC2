@@ -54,8 +54,7 @@ At this point, 9 challenges are in the repository and **finished** and 2 others 
     - TBD 
 - doggo (Android Reversing):
 	- App is done, need to get from Kurt. 
-- Google XSS:
-    - Reflected 
+- Reflected XSS Challenge on Isis blog
 - Anything else that is cool :)
 - Directory traversal - TBD
 - AWS Priv Esc
