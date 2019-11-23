@@ -58,3 +58,5 @@ At this point, 9 challenges are in the repository and **finished** and 2 others 
     - Reflected 
 - Anything else that is cool :)
 - Directory traversal - TBD
+- AWS Priv Esc
+- Basic reversing challenge 
