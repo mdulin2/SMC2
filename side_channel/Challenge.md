@@ -1,6 +1,6 @@
 ## Challenge 
 
-NSA: You've been given the challenge of logging into this unauthorized system; we have taken care of the username for you. Now, it is your job to find the password by WHATEVER means necessary, besides bruteforcing every possible combination. 
+NSA: You've been given the challenge of logging into this unauthorized system; we have taken care of the username for you. Now, it is your job to find the password by WHATEVER means necessary.
 
 How to use: 
 - Compile the client file with gcc client.c -o client 
