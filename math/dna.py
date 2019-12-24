@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #
 # Author: Luke Hartman
-# Date: 23 December 2020
+# Date: 23 December 2019
 # Description:
 #   Script that enumerates through all possible dna strings of length n
 # Usage:
