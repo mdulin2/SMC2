@@ -1,13 +1,9 @@
 # Challenge 
 
-## Challenge 1: Discover Your Inner Blue Team
-- The human immune system has really complicated processes in place to fight off millions of different foreign [antigens](https://en.wikipedia.org/wiki/Antigen). [Certain immune cells](https://en.wikipedia.org/wiki/Lymphocyte#T_cells_and_B_cells) use their receptors to recognize and bind to specific antigens. A process called [V(D)J Recombination](https://en.wikipedia.org/wiki/V(D)J_recombination) ensures that you have a diverse repertoire of receptors to fight off these nasty antigens.
-- Find the correct DNA sequence of length 10 that will allow a receptor to bind a specific antigen.
-- The correct sequence has the md5 hash: "6a81c717d2a7cebdaecf766cf85687e4".
-
-Hint: DNA sequences can be any combination of 'A', 'T', 'C', and 'G' (e.g. 'ATCTGTA', "AAA", "AAT")
-Hint: Loop over each possible sequence to see if the md5 hash of that sequence is "6a81c717d2a7cebdaecf766cf85687e4"
-Hint: If your_fav_lang == "python": use hashlib.md5(sequence.encode()).hexdigest()
+## Challenge 1: Find the DNA String
+- Your task is to find the **DNA string of length 10** that has the **MD5 hash value "6a81c717d2a7cebdaecf766cf85687e4"**. A DNA string can be any combintion of 'A', 'T', 'C', and 'G' (e.g. 'AAAAAAAAAA', 'ATATGCTAAG', 'AAAAAAAAAT'). Find the combination that gives you the correct hash.
+- Hint: Generate unique 10-nucleobase long sequences by finding a cartesian product
+- Hint: If your_fav_lang == "python": use hashlib.md5(sequence.encode()).hexdigest() for each sequence you generated.
 
 ## Challenge 2: Bowling for 15
 - Bowling is a very interesting game. With bowling, you get two chances to knock over all of the pins. On this second attempt, there are A LOT of different possible pin setups to attempt for a **spare**. How many different spare combinations are there for a pin setup which has 15 pins?  
