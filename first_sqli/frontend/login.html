@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+	<form onclick="return authenticate()">
+	  <div class="imgcontainer">
+		<img src="img_avatar2.png" alt="Avatar" class="avatar">
+	  </div>
+
+	  <div class="container">
+		<label for="username"><b>Username</b></label>
+		<input id = "username" type="text" placeholder="Enter Username" name="username" required>
+
+		<label for="psw"><b>Password</b></label>
+		<input id="password" type="password" placeholder="Enter Password" name="password" required>
+
+		<button>Login</button>
+	  </div>
+
+	</form>
+	<div id="flag">
+		
+	</div>
+ </body>
+ 
+<script>
+	function authenticate () {
+		var oReq = new XMLHttpRequest();
+		oReq.onreadystatechange = function() {
+		
+			if (oReq.readyState == XMLHttpRequest.DONE) {
+				// Set the flag into the page 
+				document.getElementById("flag").innerHTML = oReq.responseText;
+				
+				// Change this to actually work!
+				//window.location.href="file:///C:/Users/Maxwell%20Dulin/Desktop/CTF/SMC2/first_sqli/frontend/flag.html"
+				
+			}
+		}
+		// Get the values from the DOM
+		var username = document.getElementById("username").value; 
+		var password = document.getElementById("password").value;
+		 
+		// Setup the login request
+		var req  = "http://127.0.0.1:5000/login?username=" + username + "&password=" + password 
+		oReq.open("POST", req, true);
+		oReq.send();
+		
+		
+	}
+
+
+</script>
