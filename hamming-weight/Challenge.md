@@ -12,6 +12,6 @@ Suppose A = "1001 0110", B = "1010 1010".
 - weight(B) = 4 
 
 ## Questions
-Suppose A = "1101 1110", B = "1111 0000", C = "0100 1001"
-- Find weight(A), weight(B), and weight(C).
-- Which two strings have the greatest distance?
+Suppose A = "1101 1110", B = "1111 0000", C = "0101 1101"
+1. Find weight(A), weight(B), and weight(C).
+2. Which two strings have the greatest distance?
