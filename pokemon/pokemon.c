@@ -405,7 +405,15 @@ Need to read this from a file before the CTF starts.... // TODO - MAX
 */
 int did_win(){
 	if(myself.level > 100){
-		puts("Flag: flg{underfl0ws_are_fun!}"); 
+		FILE *fp; 
+		int c; 
+		fp = fopen("flag.txt","r");
+		if(fp){
+			while((c = getc(fp)) != EOF){
+				putchar(c);
+			}
+			fclose(fp);
+		}
 		return true; 
 	}
 	return false; 

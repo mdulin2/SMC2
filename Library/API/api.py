@@ -16,7 +16,7 @@ library = Flask(__name__)
 @library.route('/make_noise', methods=['GET'])
 def make_noise():
     """
-    Puts those dam kids into their place...
+    Puts those damn kids into their place...
     """
     return "Get the hell out of my library!"
 
