@@ -44,8 +44,8 @@ At this point, 9 challenges are in the repository and **finished** and 2 others 
     - chmod a file? 
     - Cronjob  
 	- Ideas for the basics are good! 
-- how_not_to_use_sql 
-    - App is done; get from Vanessa.  
+- library  
+    - SQLi 
 - log_analysis (4ish)
     - TBD 
 - math(3)
