@@ -17,7 +17,17 @@ int validate_serial(){
 
 //how to get to this point if validate_serial always returns false?
 int do_valid_stuff(){
-    printf("Flag!\n");
+    FILE *fp; 
+    int c; 
+    fp = fopen("flag.txt","r");
+
+    // Read the output of the flag file    
+    if(fp){
+        while((c = getc(fp)) != EOF)
+            putchar(c); 
+        fclose(fp);
+
+    }
 }
 
 int main( int argc, char *argv[]){

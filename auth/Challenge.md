@@ -7,3 +7,4 @@ Hint: There are multiple ways to do this challenge. What was needed in order to 
 - gdb: x/20x $ebp, disas func, break *0xaddress, continue, run. 
 - python -c will run python commands in line. 
 - Endianness (big vs little) 
+- Stack overflow (for your easiness to google :)) 
