@@ -4,6 +4,8 @@ NSA: You've been given the challenge of logging into this unauthorized system; w
 
 How to use: 
 - Compile the client file with gcc client.c -o client on gcc 7! Older versions of gcc will not work...
+- The passcode is the flag for this challenge. 
+- This challenge is quite finky... Each team should have their own ports to connect to on the server. Only use the ports that you are assigned for the team. Only a single connection can be on the server at a time. 
 - ./client IP PORT PASSCODE
 	- i.e: ./client 127.0.0.1 8080 987654321
 
