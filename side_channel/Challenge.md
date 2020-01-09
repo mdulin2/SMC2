@@ -9,6 +9,7 @@ How to use:
 
 - Hint: https://linux.die.net/man/2/time
 - Hint: The passcode has 8 characters 
+- Hint: Can you spot the difference between the passcodes 987654321 and 19999999?
 
 Given: client.c 
 Given server.c with the passcode removed. 
