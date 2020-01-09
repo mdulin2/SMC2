@@ -4,7 +4,7 @@ NSA: You've been given the challenge of logging into this unauthorized system; w
 
 How to use: 
 - Compile the client file with gcc client.c -o client on gcc 7! Older versions of gcc will not work...
-- ./client IP PORT <passcode>
+- ./client IP PORT PASSCODE
 	- i.e: ./client 127.0.0.1 8080 987654321
 
 - Hint: https://linux.die.net/man/2/time
