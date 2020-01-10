@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
+#include <string.h>
 
 /*
 Compile: 
@@ -69,13 +70,13 @@ int main()
     char line[128];
     int has_user_been_created;  // Has the player been created
     int new_score; 
-
+    puts("This is a game about who can get the highest score! The highest score seen in 100; can you break the high score?");
     setup();
 
     // Loop to play the game :)
     while(1){
 
-        puts("Please select from the following options: ");
+        puts("Please select from the following options:\n 1. create\n 2. reset\n 3. new\n 4. won");
         // Gets the input
         if(fgets(line, sizeof(line), stdin) == NULL) break;
 
@@ -120,8 +121,15 @@ int main()
             // checks to see if the user has the high score!
             int high_score = is_high_score(player->score);
             if(high_score){
-                // Open a file for the flag...
-                printf("\n\n\nFlag!\n");
+		FILE *fp; 
+		int c; 
+		fp = fopen("flag.txt","r");
+		if(fp){
+			while((c = getc(fp)) != EOF)
+				putchar(c); 
+        		fclose(fp);
+			return 0; 
+		}
             }
         }
     }
