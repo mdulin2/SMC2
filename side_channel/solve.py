@@ -5,8 +5,8 @@ The solution does not take into consideration solving two numbers at the same ti
 import os
 import time
 
-IP = "127.0.0.1"
-PORT = "8081"
+IP = "18.222.110.225"
+PORT = "3334"
 
 # Calls the client from the CLI. 
 # Returns the time taken. 
