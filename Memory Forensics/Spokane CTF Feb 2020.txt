@@ -1,0 +1,168 @@
+Question 1: What version of Windows and Service Pack level is the system the memory image was captured from?
+Answer 1: Win7SP1x64
+Solution: Based on the volatility output, the OS is listed as Win7SP1x64
+
+irproactive@DESKTOP-SFARF6G:/mnt/d$ volatility -f Capturetheflag.raw imageinfo
+Volatility Foundation Volatility Framework 2.6
+INFO    : volatility.debug    : Determining profile based on KDBG search...
+          Suggested Profile(s) : Win7SP1x64, Win7SP0x64, Win2008R2SP0x64, Win2008R2SP1x64_23418, Win2008R2SP1x64, Win7SP1x64_23418
+                     AS Layer1 : WindowsAMD64PagedMemory (Kernel AS)
+                     AS Layer2 : FileAddressSpace (/mnt/d/Capturetheflag.raw)
+                      PAE type : No PAE
+                           DTB : 0x187000L
+                          KDBG : 0xf800028420a0L
+          Number of Processors : 1
+     Image Type (Service Pack) : 1
+                KPCR for CPU 0 : 0xfffff80002843d00L
+             KUSER_SHARED_DATA : 0xfffff78000000000L
+           Image date and time : 2019-05-02 18:11:45 UTC+0000
+     Image local date and time : 2019-05-02 11:11:45 -0700
+	 
+Question 2: What process does not have a corresponding Parent Process Active?
+Answer 2: explorer.exe
+Solution: Based on a review of the Process list, the explorer.exe process 1860 has a parent process of 1756 which is not on 
+the output.
+
+irproactive@DESKTOP-SFARF6G:/mnt/d$ volatility -f Capturetheflag.raw --profile=Win7SP1x64 pslist
+Volatility Foundation Volatility Framework 2.6
+Offset(V)          Name                    PID   PPID   Thds     Hnds   Sess  Wow64 Start                          Exit
+------------------ -------------------- ------ ------ ------ -------- ------ ------ ------------------------------ ------------------------------
+0xfffffa8001252040 System                    4      0     88      624 ------      0 2019-05-03 06:32:24 UTC+0000
+0xfffffa800234d8a0 smss.exe                268      4      2       29 ------      0 2019-05-03 06:32:24 UTC+0000
+0xfffffa8002264550 csrss.exe               360    352      9      363      0      0 2019-05-03 06:32:34 UTC+0000
+0xfffffa80027d67d0 csrss.exe               408    400      7      162      1      0 2019-05-03 06:32:35 UTC+0000
+0xfffffa8002b601c0 wininit.exe             416    352      3       76      0      0 2019-05-03 06:32:35 UTC+0000
+0xfffffa8002b71680 winlogon.exe            444    400      3      111      1      0 2019-05-03 06:32:35 UTC+0000
+0xfffffa8002c69b30 services.exe            504    416      6      184      0      0 2019-05-03 06:32:36 UTC+0000
+0xfffffa80027d9b30 lsass.exe               512    416      6      534      0      0 2019-05-03 06:32:37 UTC+0000
+0xfffffa80027d81f0 lsm.exe                 520    416     10      143      0      0 2019-05-03 06:32:37 UTC+0000
+0xfffffa80029cd3e0 svchost.exe             628    504      9      345      0      0 2019-05-03 06:32:48 UTC+0000
+0xfffffa8002d38b30 VBoxService.ex          688    504     12      135      0      0 2019-05-03 06:32:48 UTC+0000
+0xfffffa8002a1bb30 svchost.exe             752    504      7      235      0      0 2019-05-02 18:02:51 UTC+0000
+0xfffffa8002d70650 svchost.exe             852    504     22      473      0      0 2019-05-02 18:02:51 UTC+0000
+0xfffffa8002d9c780 svchost.exe             892    504     17      427      0      0 2019-05-02 18:02:51 UTC+0000
+0xfffffa8002dbe9e0 svchost.exe             920    504     29      878      0      0 2019-05-02 18:02:51 UTC+0000
+0xfffffa8002e3db30 svchost.exe             400    504     10      281      0      0 2019-05-02 18:02:56 UTC+0000
+0xfffffa8002e57890 svchost.exe            1004    504     20      379      0      0 2019-05-02 18:02:56 UTC+0000
+0xfffffa8002dfdab0 spoolsv.exe            1140    504     12      279      0      0 2019-05-02 18:02:57 UTC+0000
+0xfffffa8002f2cb30 svchost.exe            1268    504     17      297      0      0 2019-05-02 18:02:59 UTC+0000
+0xfffffa8002f81460 svchost.exe            1368    504     20      295      0      0 2019-05-02 18:02:59 UTC+0000
+0xfffffa8003148b30 taskhost.exe           1788    504      8      159      1      0 2019-05-02 18:03:09 UTC+0000
+0xfffffa8003172b30 explorer.exe           1860   1756     19      645      1      0 2019-05-02 18:03:09 UTC+0000
+0xfffffa800315eb30 dwm.exe                1896    892      3       69      1      0 2019-05-02 18:03:09 UTC+0000
+0xfffffa800300d700 VBoxTray.exe           1600   1860     13      141      1      0 2019-05-02 18:03:25 UTC+0000
+0xfffffa8003367060 SearchIndexer.         2180    504     11      629      0      0 2019-05-02 18:03:32 UTC+0000
+0xfffffa80033f6060 WmiPrvSE.exe           2876    628      5      113      0      0 2019-05-02 18:03:55 UTC+0000
+0xfffffa8003162060 svchost.exe            1820    504     11      317      0      0 2019-05-02 18:05:09 UTC+0000
+0xfffffa8003371540 wmpnetwk.exe           2464    504     14      440      0      0 2019-05-02 18:05:10 UTC+0000
+0xfffffa80014eeb30 taskhost.exe           1148    504      8      176      0      0 2019-05-02 18:09:58 UTC+0000
+
+Question 3: What process has opened the port 554?
+Answer: wmpnetwk.exe
+Solution:  wmpnetwk.exe has opened three instances of the port 554 on the local system
+
+irproactive@DESKTOP-SFARF6G:/mnt/d$ volatility -f Capturetheflag.raw --profile=Win7SP1x64 netscan
+Volatility Foundation Volatility Framework 2.6
+Offset(P)          Proto    Local Address                  Foreign Address      State            Pid      Owner          Created
+0x5c201ca0         UDPv4    0.0.0.0:5005                   *:*                                   2464     wmpnetwk.exe   2019-05-02 18:05:14 UTC+0000
+0x5c201ca0         UDPv6    :::5005                        *:*                                   2464     wmpnetwk.exe   2019-05-02 18:05:14 UTC+0000
+0x5c49cbb0         UDPv4    0.0.0.0:59471                  *:*                                   1368     svchost.exe    2019-05-02 18:03:06 UTC+0000
+0x5c4a31c0         UDPv4    0.0.0.0:59472                  *:*                                   1368     svchost.exe    2019-05-02 18:03:06 UTC+0000
+0x5c4a31c0         UDPv6    :::59472                       *:*                                   1368     svchost.exe    2019-05-02 18:03:06 UTC+0000
+0x5c4ac630         UDPv4    0.0.0.0:3702                   *:*                                   1368     svchost.exe    2019-05-02 18:03:14 UTC+0000
+0x5c4ac630         UDPv6    :::3702                        *:*                                   1368     svchost.exe    2019-05-02 18:03:14 UTC+0000
+0x5c519b30         UDPv4    0.0.0.0:3702                   *:*                                   1368     svchost.exe    2019-05-02 18:03:14 UTC+0000
+0x5c537ec0         UDPv4    0.0.0.0:3702                   *:*                                   1368     svchost.exe    2019-05-02 18:03:14 UTC+0000
+0x5c690360         UDPv4    0.0.0.0:0                      *:*                                   1004     svchost.exe    2019-05-02 18:02:56 UTC+0000
+0x5c690360         UDPv6    :::0                           *:*                                   1004     svchost.exe    2019-05-02 18:02:56 UTC+0000
+0x5c6918e0         UDPv4    0.0.0.0:5355                   *:*                                   1004     svchost.exe    2019-05-02 18:02:56 UTC+0000
+0x5c6918e0         UDPv6    :::5355                        *:*                                   1004     svchost.exe    2019-05-02 18:02:56 UTC+0000
+0x5c692940         UDPv4    0.0.0.0:5005                   *:*                                   2464     wmpnetwk.exe   2019-05-02 18:05:14 UTC+0000
+0x5c692ae0         UDPv4    0.0.0.0:5355                   *:*                                   1004     svchost.exe    2019-05-02 18:02:56 UTC+0000
+0x5c7bac70         UDPv4    0.0.0.0:5004                   *:*                                   2464     wmpnetwk.exe   2019-05-02 18:05:14 UTC+0000
+0x5c7bac70         UDPv6    :::5004                        *:*                                   2464     wmpnetwk.exe   2019-05-02 18:05:14 UTC+0000
+0x5c7f9600         UDPv4    0.0.0.0:3702                   *:*                                   1368     svchost.exe    2019-05-02 18:03:14 UTC+0000
+0x5c7f9600         UDPv6    :::3702                        *:*                                   1368     svchost.exe    2019-05-02 18:03:14 UTC+0000
+0x5c44e1b0         TCPv4    0.0.0.0:5357                   0.0.0.0:0            LISTENING        4        System
+0x5c44e1b0         TCPv6    :::5357                        :::0                 LISTENING        4        System
+0x5c528010         TCPv4    0.0.0.0:445                    0.0.0.0:0            LISTENING        4        System
+0x5c528010         TCPv6    :::445                         :::0                 LISTENING        4        System
+0x5c534c60         TCPv4    0.0.0.0:49156                  0.0.0.0:0            LISTENING        504      services.exe
+0x5c534c60         TCPv6    :::49156                       :::0                 LISTENING        504      services.exe
+0x5c535010         TCPv4    0.0.0.0:49156                  0.0.0.0:0            LISTENING        504      services.exe
+0x5c6de720         TCPv4    0.0.0.0:49154                  0.0.0.0:0            LISTENING        920      svchost.exe
+0x5c6de720         TCPv6    :::49154                       :::0                 LISTENING        920      svchost.exe
+0x5c6e0df0         TCPv4    0.0.0.0:49154                  0.0.0.0:0            LISTENING        920      svchost.exe
+0x5c717460         TCPv4    0.0.0.0:49155                  0.0.0.0:0            LISTENING        512      lsass.exe
+0x5ca3ecc0         UDPv6    ::1:1900                       *:*                                   1368     svchost.exe    2019-05-02 18:05:13 UTC+0000
+0x5ca452c0         UDPv6    fe80::6998:27e6:5653:fc35:1900 *:*                                   1368     svchost.exe    2019-05-02 18:05:13 UTC+0000
+0x5ca4c2c0         UDPv6    fe80::1503:ac56:439f:bb6c:1900 *:*                                   1368     svchost.exe    2019-05-02 18:05:13 UTC+0000
+0x5ca517c0         UDPv4    0.0.0.0:5004                   *:*                                   2464     wmpnetwk.exe   2019-05-02 18:05:14 UTC+0000
+0x5ca5a7c0         UDPv4    127.0.0.1:1900                 *:*                                   1368     svchost.exe    2019-05-02 18:05:13 UTC+0000
+0x5ca5d7c0         UDPv4    169.254.252.53:1900            *:*                                   1368     svchost.exe    2019-05-02 18:05:13 UTC+0000
+0x5ca655a0         UDPv4    127.0.0.1:61556                *:*                                   1368     svchost.exe    2019-05-02 18:05:13 UTC+0000
+0x5caa6250         UDPv4    192.168.35.2:138               *:*                                   4        System         2019-05-03 06:32:31 UTC+0000
+0x5cab3010         UDPv4    192.168.35.2:137               *:*                                   4        System         2019-05-03 06:32:31 UTC+0000
+0x5cab65a0         UDPv4    169.254.252.53:137             *:*                                   4        System         2019-05-03 06:32:40 UTC+0000
+0x5caefec0         UDPv4    169.254.252.53:138             *:*                                   4        System         2019-05-03 06:32:40 UTC+0000
+0x5c932da0         TCPv4    0.0.0.0:135                    0.0.0.0:0            LISTENING        752      svchost.exe
+0x5c948330         TCPv4    0.0.0.0:135                    0.0.0.0:0            LISTENING        752      svchost.exe
+0x5c948330         TCPv6    :::135                         :::0                 LISTENING        752      svchost.exe
+0x5c9541a0         TCPv4    0.0.0.0:49152                  0.0.0.0:0            LISTENING        416      wininit.exe
+0x5c9541a0         TCPv6    :::49152                       :::0                 LISTENING        416      wininit.exe
+0x5c954900         TCPv4    0.0.0.0:49152                  0.0.0.0:0            LISTENING        416      wininit.exe
+0x5c996bd0         TCPv4    0.0.0.0:49153                  0.0.0.0:0            LISTENING        852      svchost.exe
+0x5c996bd0         TCPv6    :::49153                       :::0                 LISTENING        852      svchost.exe
+0x5c99c180         TCPv4    0.0.0.0:49153                  0.0.0.0:0            LISTENING        852      svchost.exe
+0x5cab60e0         TCPv4    192.168.35.2:139               0.0.0.0:0            LISTENING        4        System
+0x5cab95d0         TCPv4    169.254.252.53:139             0.0.0.0:0            LISTENING        4        System
+0x5cabcdd0         TCPv4    0.0.0.0:554                    0.0.0.0:0            LISTENING        2464     wmpnetwk.exe
+0x5cdd2950         TCPv4    0.0.0.0:49155                  0.0.0.0:0            LISTENING        512      lsass.exe
+0x5cdd2950         TCPv6    :::49155                       :::0                 LISTENING        512      lsass.exe
+0x5c949290         TCPv6    -:0                            c801:b602:80fa:ffff:c801:b602:80fa:ffff:0 CLOSED           1        ??????????????
+0x5cad94a0         TCPv6    -:49158                        ::1:2869             CLOSED           2464     wmpnetwk.exe
+0x5d5e8960         TCPv4    0.0.0.0:10243                  0.0.0.0:0            LISTENING        4        System
+0x5d5e8960         TCPv6    :::10243                       :::0                 LISTENING        4        System
+0x5d5f79c0         TCPv4    0.0.0.0:554                    0.0.0.0:0            LISTENING        2464     wmpnetwk.exe
+0x5d5f79c0         TCPv6    :::554                         :::0                 LISTENING        2464     wmpnetwk.exe
+0x5de66420         UDPv4    0.0.0.0:0                      *:*                                   688      VBoxService.ex 2019-05-02 18:11:42 UTC+0000
+0x5e00dbe0         UDPv6    fe80::1503:ac56:439f:bb6c:546  *:*                                   852      svchost.exe    2019-05-02 18:10:03 UTC+0000
+0x5e0e43b0         UDPv4    0.0.0.0:68                     *:*                                   852      svchost.exe    2019-05-02 18:09:56 UTC+0000
+0x5e11d1b0         UDPv6    fe80::6998:27e6:5653:fc35:546  *:*                                   852      svchost.exe    2019-05-02 18:10:03 UTC+0000
+0x5e2a6010         UDPv6    ::1:61555                      *:*                                   1368     svchost.exe    2019-05-02 18:05:13 UTC+0000
+0x5e37e680         UDPv4    192.168.35.2:1900              *:*                                   1368     svchost.exe    2019-05-02 18:05:13 UTC+0000
+0x5e354410         TCPv4    0.0.0.0:2869                   0.0.0.0:0            LISTENING        4        System
+0x5e354410         TCPv6    :::2869                        :::0                 LISTENING        4        System
+0x5e362010         TCPv6    -:2869                         ::1:49158            CLOSED           4        System
+
+Question 4: What service is associated with the TCP Port 554? (Use only four letter designation).
+Answer: rtsp
+Solution: An internet search reveals that the TCP Port 554 is associated with the Real Time Streaming Protocol
+
+Question 5: What other ports were opened by wmpnetwk.exe?
+Answer: 5004, 5005
+Solution: The 5004 and 5005 UDP ports were opened by wmpnetwk.exe.
+
+Question 6: What is the MD5 hash for the executable wmpnetwk.exe?
+Answer: d55e41e669cb6527c7346232b96eae58 
+Solution: First, dump the process using procdump and then use the Linux utility md5sum for the output file
+
+irporactive@DESKTOP-SFARF6G:/mnt/d$ volatility -f Capturetheflag.raw --profile=Win7SP1x64 procdump -p 2464 --dump-dir=/mnt/d
+
+irproactive@DESKTOP-SFARF6G:/mnt/d$ md5sum executable.2464.exe
+d55e41e669cb6527c7346232b96eae58  executable.2464.exe
+
+Question 7: What Anti-virus product indicates that this file is malicious?
+Answer: CrowdStrike Falcon
+Solution: Input the MD5 into Virus Total
+
+Question 8: What percentage confidence does CrowdStrike indicate the file is malicious?
+Answer: 60
+Solution: CrowdStrike indicates the following on VirusTotal: Win/malicious_confidence_60% (W)
+
+
+
+
+
+
+CrowdStrike Falcon Win/malicious_confidence_60% (W)
