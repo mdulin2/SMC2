@@ -15,47 +15,35 @@ Some challenge directories will have *multiple* challenges in one. For instance,
 
 ## Challenges (39)
 The challenges with TBD have not been created yet, but are ideas. Everything else has been created and is in a folder.   
-At this point, 9 challenges are in the repository and **finished** and 2 others are done but are not in the repository.   
+At this point, all of the challenges besides Corey's log analysis challenges have been added. 
 
 - easy_redirect (Open redirect without restrictions)
-	- Need to add the Challenge and solution files for this. 
-- hard_redirect (Open redirect **with** some restrictions)
-	- Need to add the Challenge and solution files for this. 
-- morse_code:
-	- Need to add the Challenge and solution files for this. 
+- morse_code (Decoding Morse code) 
 - huffman (from last year, but screwed up. So, we're putting it in again!)
 - wildcard_madness(Using only wildcards to do things)
 - uaf (use after free vuln)
-	- Need to add the Challenge and solution files for this. 
-- pokemon (Integer underflow):
-	- Need to add the Challenge and solution files for this. 
+- pokemon (Integer underflow)
 - korean_food (session handling) 
 - xor (decrypting data using fun properties of xor)
 - Diffie Hellman (explain)
-- side_channel
-- priv_esc 
-- recon_osint (3)
-    - TBD 
-- forensics (4)
-    - TBD 
+- side_channel (Timing based analysis)
+- priv_esc (abusing setuid binaries) 
+- forensics (8)
 - basics (4ish) TBD
     - SSH 
     - show the contents of a file 
-    - chmod a file? 
-    - Cronjob  
-	- Ideas for the basics are good! 
-- library  
-    - SQLi 
-- log_analysis (4ish)
-    - TBD 
+    - Moves directories
+    - grep 
+- library (SQLi API)
+- log_analysis (5)
 - math(3)
-    - TBD 
-- BF (Coding in an esoteric language)
-    - TBD 
-- doggo (Android Reversing):
-	- App is done, need to get from Kurt. 
-- Reflected XSS Challenge on Isis blog
-- Anything else that is cool :)
-- Directory traversal - TBD
-- AWS Priv Esc
-- Basic reversing challenge 
+    - Bowling 
+    - MD5 brute force 
+    - Hamming weights (2) 
+- Login form (basic SQLi and reflected XSS)
+- m_zip (directory traversal)
+- cesar cipher(Decode cesar cipher encoded text) 
+- passive (Finding the flag within network packets)
+- basic reverse(Finding the flag within a binary) 
+- admin panel (Source code analysis RCE) 
+- auth (Basic buffer overflow) 
