@@ -117,7 +117,7 @@ def checkin_book():
         result = cursor.fetchall()
         return build_result(result, 200)
 		
-    
+# Just ignore these and below... The API definitions are above....    
 def list_result(result_set):
     """
     Turn a result set into comma delimited list.

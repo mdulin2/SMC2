@@ -11,14 +11,14 @@ payload.sh - Max Dulin wrote a payload for his computer to exploit this.
 - First, figure out the vuln. By putting in too many characters, a seg fault is created...Or, by reading the source code, there is no check on the input size of the buffer.
 - Second, figure out the offset. This can be done in GDB, by manually looking at the stack during execution or using something like pattern.py. The offset should be 36 characters. The 37-40 characters are the return address.
 - Third, go into GDB to figure out the address of the function "do_valid_stuff". Do this by typing in `disas do_valid_stuff`. This will give you an address to jump the flow of the program to.
-    - I use `disas do_valid_stuff`, then use the beginning address of the function to find this.
+    - I use `disas do_valid_stuff`, then use the beginning address of the function to find where we need to go.
 - Now, it is time to craft the exploit.
     - 1. Start with the offset. Print out 28 characters, because the offset was 28.
-    - 2. Because the OS's Endian, we need to turn the Big Endian (i.e. 0x804848b) into little Endian (i.e. 0xbc840408).
-    - 3. Since we are writing raw values to the stack, we need to use hex code to do this. In order to do this, we must write the characters prefaced with `\x`. So, in the example, turn `0xbc840408` into `\xbc\x84\x04\x08`. Add this value to the payload.
+    - 2. Because the OS's Endian, we need to turn the Big Endian (i.e. 0x804848b) into little Endian (i.e. 0xbc840408). Notice that this is PER byte. 
+    - 3. Since we are writing raw values to the stack, we need to use hex code to do this. In order to do this, we must write the characters prefaced with `\x`. So, in the example, turn `0x565556b4` into `\xb4\x56\x55\x56`. Add this value to the payload.
     - 4. If all is done write, you should have redirected execution of the program to where the flag is at, displaying the flag.
-    - 5. My final payload is `python -c 'print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\x9c\x85\x04\x08"' | ./auth`
-
+    - 5. My final payload is `python -c 'print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\xb4\x56\x55\x56"' | ./auth`
+		- The exact address will differ from system to system.
 ## Further explanation:
 - How the stack works:
     - On load of a function, the function address is pushed, followed by ebp then local variables (if needed).

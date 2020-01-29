@@ -8,7 +8,7 @@ def index():
     page = request.args.get('page')
     bypass = verify(page)
     if(bypass == True):
-        value = "{Flag}"
+        value = "XXXXXXXXXXXXXXXX"
         headers={'Location': page + "?page=" + value }
 
     else:

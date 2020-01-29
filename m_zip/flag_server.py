@@ -1,6 +1,7 @@
 import logging   
 import os  
 from decode import unzip # Unzip function
+import glob
 import shutil
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
@@ -16,8 +17,9 @@ class Server(BaseHTTPRequestHandler):
         post_data = self.rfile.read(content_length)  
 		
         
-		# Response information 
+		# Transferring the zip file 
         self.save_file(post_data)
+
 		# unzip 
         self.unzip_local()
         # Check to see if a files exists in /flag location. If so, send back the actual flag...
@@ -27,7 +29,6 @@ class Server(BaseHTTPRequestHandler):
         else: 
             path = "/" 
 
-        #print (post_data)
         self._set_response()
         self.wfile.write("POST request for {}".format(path).encode('utf-8'))
 		
@@ -58,7 +59,7 @@ class Server(BaseHTTPRequestHandler):
         f.write(huffman_file) 
         f.close()        
 		
-		# Parse the content the hiearchy file 
+		# Parse and save the content the hiearchy file 
         hiearchy_file = content.split('Content-Disposition: form-data; name="file"; filename=".hiearchy.key"')[1]
         hiearchy_file = hiearchy_file.split('----------')[0]
         hiearchy_file = "\n".join(hiearchy_file.split('\n')[3:])
@@ -77,14 +78,18 @@ class Server(BaseHTTPRequestHandler):
 			flag = True 
         else: 
             flag = False 
-		
-        zip_file = "transfer.zip"
-        # Create target Directory if do not exist.
-        if not os.path.exists(zip_file):
-            os.mkdir(zip_file) 
 			
 		# Cleans this up for the next user to call this to use. 
-        shutil.rmtree('/flag/') 
+        remove_dir = "/flag/*"
+        to_remove = glob.glob(remove_dir) 
+        for item in to_remove:
+
+            # Directory
+            if(os.path.isdir(item)):
+                shutil.rmtree(item)
+            # File 
+            else: 
+                os.remove(item)
 		
         return flag 
 		

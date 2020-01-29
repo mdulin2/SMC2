@@ -63,7 +63,7 @@ void login_wrapper(int sockfd)
     read(sockfd, password, sizeof(password)); 	
 
 	// The flag! 
-	char *pin = "12348219";
+	char *pin = "XXXXXXXX";
 	int answer = check_auth(password, pin);
 	
 	// Send flag or not the flag. 

@@ -6,7 +6,7 @@ import os
 import time
 
 IP = "18.222.110.225"
-PORT = "3334"
+PORT = "2222"
 
 # Calls the client from the CLI. 
 # Returns the time taken. 
