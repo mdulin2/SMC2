@@ -1,3 +1,5 @@
+# Logging Challenge 1
+
 ## Solution.md - Logging 
 
 Being able to analyze log files is an important aspect of the defensive side of security. So, this challenges are a way to get started with log file analysis on Windows computers. 
@@ -32,3 +34,36 @@ Each one of the questions has an answer and a fairly easy 'how to solve it' for 
 	- It is interesting to see all of the processes that are running on this! 
 
 
+# Logging Challenge 2
+
+## solution.md - \*nix logs
+
+### Background
+
+The provided auth.log file is a standard sshd log for an ubuntu server linux system. This can be analyzed with a number of programs or cracked open by hand.
+
+Hint:
+You may provide the following regex if a team is super stuck: `sshd.+: (?P<result>\S+) (?P<method>\S+) for (?P<user>\S+) from (?P<ip>\S+) port (?P<port>\d+)`
+
+Hint: GeoIP can be done a variety of ways but Maxmind provides a great resource: https://dev.maxmind.com/geoip/geoip2/geolite2/
+
+### Solutions:
+
+The solutions are numbers or csv submissions
+
+1. 424
+2. 418
+3. 6
+4. 
+```
+password,Failed,418
+publickey,Accepted,5
+password,Accepted,1
+```
+5. 37.204.31.33
+6. 
+```
+China,399
+Russia,20
+United States,5
+```
