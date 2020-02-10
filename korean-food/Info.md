@@ -9,10 +9,10 @@ The goal is to become the admin user on the site.
 - client/: The frontend for the application 
 
 ## Using the application 
-
 - This is a react application with a express backend. 
 - First add the username, password and database name to all the express files are configuration. 
-- Run auth.sql and koreanFood.sql to seed the database
+- Run auth.sql and koreanFood.sql to seed the databases
+	- Also, change the credentials in the database configuration file for the backend. 
 - backend: 
 	- Run 'npm install' to install all of the packages 
 	- Run 'npm start' to run the backend 

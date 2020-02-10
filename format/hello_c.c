@@ -1,4 +1,4 @@
-/*
+/* (UNUSED) 
 Hey there, this is the second program after I wrote hello world!
 This time, it just prints the users input! :) 
 Compile: 

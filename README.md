@@ -28,19 +28,19 @@ At this point, all of the challenges besides Corey's log analysis challenges hav
 - Diffie Hellman (explain)
 - side_channel (Timing based analysis)
 - priv_esc (abusing setuid binaries) 
-- forensics (8)
-- basics (4ish) TBD
+- forensics (6)
+- basics (4ish) (do not have entries in here...)
     - SSH 
     - show the contents of a file 
     - Moves directories
     - grep 
-- library (SQLi API)
+- Library
 - log_analysis (5)
 - math(3)
     - Bowling 
     - MD5 brute force 
     - Hamming weights (2) 
-- Login form (basic SQLi and reflected XSS)
+- first_sqli (basic SQLi and reflected XSS)
 - m_zip (directory traversal)
 - cesar cipher(Decode cesar cipher encoded text) 
 - passive (Finding the flag within network packets)

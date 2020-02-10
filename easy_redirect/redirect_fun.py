@@ -1,6 +1,7 @@
 from flask import Flask, redirect, request, Response
 import re
 
+# Deploy: python3 redirect_fun.py &
 app = Flask(__name__)
 
 @app.route("/")

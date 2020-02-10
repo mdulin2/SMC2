@@ -1,4 +1,4 @@
-## AWS Priv Esc
+## AWS Priv Esc (UNUSED) 
 
 Since the Captial One Breach that happened, AWS accounts have needed to be locked down more and more. In this challenge, a low level AWS will be turned into an administrator, in order to grab a flag.  
 
