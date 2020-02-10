@@ -5,7 +5,7 @@
 
 /*
 Compile: 
-- gcc high_score.c
+- gcc high_score.c -o high_score
 */
 // 16 bytes
 struct player {
