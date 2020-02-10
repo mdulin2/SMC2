@@ -47,3 +47,7 @@ At this point, all of the challenges besides Corey's log analysis challenges hav
 - basic reverse(Finding the flag within a binary) 
 - admin panel (Source code analysis RCE) 
 - auth (Basic buffer overflow) 
+
+
+## Scoreboard 
+- The Scoreboard directory has information about the scoreboard setup, included the blank CTFd scoreboard. 
