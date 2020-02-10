@@ -1,3 +1,5 @@
+Memory Image: https://www.dropbox.com/s/6uln8t53r4oj3fp/capdflag.vmem?dl=0
+
 Question 1: What version of Windows and Service Pack level is the system the memory image was captured from?
 Answer 1: Win7SP1x64
 Solution: Based on the volatility output, the OS is listed as Win7SP1x64
